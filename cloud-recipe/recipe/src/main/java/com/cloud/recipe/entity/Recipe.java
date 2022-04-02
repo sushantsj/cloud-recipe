@@ -1,8 +1,7 @@
 
 package com.cloud.recipe.entity;
 
-import java.util.Date;
-
+import java.time.Instant;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,11 +25,10 @@ public class Recipe {
 	private String estimatedTime;
 
 	@NotNull
-	private Date date;
-	
-	@NotNull
-	private String userName;
+	private Instant date;
 
+	@NotNull
+	private String username;
 
 	public Long getId() {
 		return id;
@@ -64,12 +62,20 @@ public class Recipe {
 		this.estimatedTime = estimatedTime;
 	}
 
-	public Date getDate() {
+	public Instant getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(Instant date) {
 		this.date = date;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 }
