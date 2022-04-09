@@ -12,6 +12,8 @@ import com.google.api.services.youtube.YouTube;
 import com.google.api.services.youtube.model.SearchListResponse;
 import com.google.api.services.youtube.model.SearchResult;
 
+import io.micrometer.core.annotation.Timed;
+
 @Service
 public class YoutubeService {
 
@@ -20,6 +22,7 @@ public class YoutubeService {
 	/**
 	 * Returns the first 5 YouTube videos that match the query term
 	 */
+	@Timed(value = "youtube.time", description = "Time taken to return youtube search")
 	public List<YoutubeVideo> fetchVideosByQuery(String queryTerm) {
 		List<YoutubeVideo> videos = new ArrayList<YoutubeVideo>();
 

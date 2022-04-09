@@ -15,6 +15,7 @@ import javax.persistence.criteria.Root;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +28,11 @@ import com.cloud.recipe.repository.RecipeRepository;
 import com.cloud.recipe.repository.UserRepository;
 import com.cloud.recipe.service.RecipeService;
 
+import io.micrometer.core.annotation.Timed;
+import io.micrometer.core.aop.TimedAspect;
+import io.micrometer.core.instrument.Counter;
+import io.micrometer.core.instrument.MeterRegistry;
+
 @Service
 public class RecipeServiceImpl implements RecipeService {
 
@@ -37,10 +43,17 @@ public class RecipeServiceImpl implements RecipeService {
 
 	@Autowired
 	private UserRepository userRepository;
+	
+	@Bean
+	public TimedAspect timedAspect(MeterRegistry registry) {
+	    return new TimedAspect(registry);
+	}
 
 	@Override
+	@Timed(value = "recipe.time", description = "Time taken to create recipe")
 	public Recipe createRecipe(RecipeWrapper recipe) throws RecipeException {
 		log.info("Class: RecipeServiceImpl and method: createRecipe");
+		
 		User checkUser = userRepository.findByUsernameAndPassword(recipe.getUsername(), recipe.getPassword());
 		Recipe newRecipe = new Recipe();
 		try {

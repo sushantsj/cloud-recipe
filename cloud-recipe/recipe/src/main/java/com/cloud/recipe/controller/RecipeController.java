@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -29,6 +30,7 @@ public class RecipeController {
 
 	private final Logger log = LoggerFactory.getLogger(RecipeController.class);
 
+	@Autowired
 	private RecipeService recipeService;
 
 	@PostMapping("/create-recipe")
@@ -36,9 +38,7 @@ public class RecipeController {
 		log.info("Rest request to create recipe");
 		Recipe recipe = null;
 		try {
-			if (recipeWrapper.getUsername() != null && recipeWrapper.getTitle() != null
-					&& recipeWrapper.getBody() != null && recipeWrapper.getEstimatedTime() != null
-					&& recipeWrapper.getPassword() != null) {
+			if (recipeWrapper != null) {
 				recipe = recipeService.createRecipe(recipeWrapper);
 			} else {
 				throw new RecipeException("Parameters missing, Fill the missing parameters");
