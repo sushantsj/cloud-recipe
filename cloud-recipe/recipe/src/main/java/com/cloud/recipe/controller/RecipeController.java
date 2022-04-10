@@ -82,7 +82,7 @@ public class RecipeController {
 		} catch (RecipeException e) {
 			throw new RecipeException(e.getMessage());
 		} catch (UserException e) {
-			throw new UserException(e.getMessage());
+			throw new UserException(e.getMessage() + HttpStatus.NOT_FOUND);
 		}
 		return new ResponseEntity<List<Recipe>>(recipeList, HttpStatus.OK);
 	}
@@ -121,9 +121,9 @@ public class RecipeController {
 				throw new UserException("Username or passowrd incorrect");
 			}
 		} catch (RecipeException e) {
-			throw new RecipeException(e.getMessage());
+			throw new RecipeException(e.getMessage() + HttpStatus.NOT_FOUND);
 		} catch (UserException e) {
-			throw new UserException(e.getMessage());
+			throw new UserException(e.getMessage() + HttpStatus.NOT_FOUND);
 		}
 		return new ResponseEntity<Boolean>(result, HttpStatus.OK);
 	}

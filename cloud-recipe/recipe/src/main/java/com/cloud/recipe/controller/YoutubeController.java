@@ -1,16 +1,16 @@
 package com.cloud.recipe.controller;
 
-import javax.validation.Valid;
+
 import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cloud.recipe.entity.YoutubeSearchCriteria;
 import com.cloud.recipe.entity.YoutubeVideo;
 import com.cloud.recipe.serviceimpl.YoutubeService;
 
@@ -36,11 +36,11 @@ public class YoutubeController {
 	 * //get out return "youtubeDemo"; }
 	 */
 
-	@PostMapping("/youtubeDemo")
-	public List<YoutubeVideo> formSubmit(@Valid YoutubeSearchCriteria youtubeSearchCriteria) {
-		log.info("Get videos link by query: {}", youtubeSearchCriteria.getQueryTerm());
+	@GetMapping("/youtubeDemo/{query}")
+	public List<YoutubeVideo> formSubmit(@PathVariable("query") String query) {
+		log.info("Get videos link by query: {}", query);
 		// get the list of YouTube videos that match the search term
-		List<YoutubeVideo> videos = youtubeService.fetchVideosByQuery(youtubeSearchCriteria.getQueryTerm());
+		List<YoutubeVideo> videos = youtubeService.fetchVideosByQuery(query);
 		log.info("videos list: {}", videos.toString());
 		return videos;
 	}

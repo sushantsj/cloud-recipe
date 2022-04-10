@@ -1,0 +1,15 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: recipe
+  labels:
+    release: prometheus-operator
+spec:
+  selector:
+    matchLabels:
+      app: recipe
+  endpoints:
+  - port: http
+    path: '/actuator/prometheus'
+    interval: 10s
+    honorLabels: true

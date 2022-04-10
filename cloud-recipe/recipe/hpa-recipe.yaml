@@ -1,0 +1,13 @@
+piVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: recipe
+  namespace: default
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: recipe
+  minReplicas: 1
+  maxReplicas: 10
+  metrzationPercentage: 10

@@ -34,7 +34,7 @@ public class YoutubeService {
 			YouTube.Search.List search = youtube.search().list("id,snippet");
 
 			// Enter the api key created by youtube credentials
-			String apiKey = "AIzaSyCrtyFSbCi6UjpTdXQ4T20DO4yPYaJYrkk";
+			String apiKey = "AIzaSyD_h7zbWgvbI4Syl8W1j2PjX9fV_eC5__k";
 			search.setKey(apiKey);
 
 			// set the search term

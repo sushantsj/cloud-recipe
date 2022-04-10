@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: recipe
+spec:
+  selector:
+    matchLabels:
+      app: recipe
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: recipe
+    spec:
+      hostNetwork: true
+      containers:
+        - image: gcr.io/helical-client-346517/recipe-1
+          name: recipe
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+              name: http
+          resources:
+            limits:
+              cpu: "900m"
+            requests:
+              cpu: "500m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: recipe
+spec:
+  type: NodePort
+  ports:
+  - port: 8080
+    targetPort: 8080
+    protocol: TCP
+    name: http
+  selector:
+    app: recipe
