@@ -23,7 +23,7 @@ These project contains these features.
 3. Docker on local system.
 4. Jmeter to test load balancing
 5. Eclipse/Spring tool Suite/Any other editor.
-6. Prometheus istalled on GKE.
+6. Prometheus installed on GKE.
 7. Custom-metric-server installed on GKE.
 8. JDK 11 on local machine
 9. Maven
