@@ -17,6 +17,9 @@ These project contains these features.
  1. I have created the application on https://start.spring.io/ and selected Project: Maven, Language: Java, Spring Boot Version: 2.5.5, Packaging as Jar, Java 11.
  2. Dependencies: Spring Boot Devtools, Spring Web, Spring Data JPA, MySQL Driver, Spring boot actuator, Prometheus.
 
+# Prequisite
+Create your youtube api key to access external apis for youtube and update in youtubeServiceImpl class.
+Create your movie api key from themoviedb.org and update in youtubecontroller class.
 # Softwares/Technologies used to implement/run/modify/test the application.
 1. GKE
 2. Cloud SQL to store data.
