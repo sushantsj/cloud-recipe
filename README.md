@@ -37,7 +37,7 @@ These project contains these features.
 
 # Steps to run the application(Microservice) on cloud.
 1. Go to the path cloud-recipe/cloud-recipe/recipe/ and run "./mvnw spring-boot:build-image" to create docker image. make sure docker is installed.
-2. Once the image is created push the image to your recpository or to Google clod repository.
+2. Once the image is created push the image to your recpository or to Google cloud repository.
 3. To push it to GCR follow these steps:
   a) docker tag recipe:2.0 gcr.io/<my-project-id>/recipe
   b) docker push gcr.io/<my-project-id>/recipe
